@@ -1,7 +1,7 @@
 from classes import atividade, tudo, dias
+from pythonds import PriorityQueue
 
 atividades = tudo.Tudo()
-
 
 while True:
     print("\nDigite o nome da atividade: ")
@@ -64,8 +64,34 @@ while True:
         break
 
 
-print(atividades.atividades)
-print("-------------------------------------")
+#print(atividades.atividades)
+#print("-------------------------------------")
 sortedAtividades = sorted(
     atividades.atividades, key=lambda x: x.horarioInicial)
-print(sortedAtividades)
+#print(sortedAtividades)
+
+
+funcionarios = PriorityQueue()
+qtd_funcionarios = 0
+
+for i in sortedAtividades:
+    if not funcionarios.isEmpty():
+        disponivel = funcionarios.delMin()
+        #print (disponivel)
+
+    else:
+        disponivel = None
+
+    if disponivel is not None:
+        if i.horarioInicial >= disponivel[0]:
+            funcionarios.add((i.horarioFinal, (i.horarioFinal, disponivel[1])))
+
+        else:
+            qtd_funcionarios = qtd_funcionarios + 1
+            funcionarios.add((i.horarioFinal, (i.horarioFinal, qtd_funcionarios)))
+
+    else:
+            qtd_funcionarios = qtd_funcionarios + 1
+            funcionarios.add((i.horarioFinal, (i.horarioFinal, qtd_funcionarios)))
+
+print (qtd_funcionarios)
