@@ -21,6 +21,6 @@ nav:
   - Início: index.md
   - Ambiete de desenvolvimento: ambiente.md
   - Algoritmo do jogo: code.md
-#  - Questões da lista:
-#      - Questão 11: questoes/q11.md
-#      - Questão 18: questoes/q18.md
+  - Questões da lista:
+      - Questão 5: questoes/quest5.md
+      - Questão 7: questoes/quest7.md
