@@ -1,5 +1,6 @@
 from classes import atividade, tudo, dias
 from pythonds import PriorityQueue
+from tools import daySelector
 
 atividades = tudo.Tudo()
 
@@ -21,39 +22,19 @@ while True:
                 break
 
     days = dias.Dias()
-    #print (days.dias)
     print("\nDias da semana que tem que ser feito:\n")
     print("1) Domingo\n2) Segunda\n3) Terça\n4) Quarta\n5) Quinta\n6) Sexta\n7) Sábado\n")
-    diass = input()
+    diasString = input()
     #print (diass)
-    for dia in diass:
-        if dia == '1':
-            days.add(1)
-
-        if dia == '2':
-            days.add(2)
-
-        if dia == '3':
-            days.add(3)
-
-        if dia == '4':
-            days.add(4)
-
-        if dia == '5':
-            days.add(5)
-
-        if dia == '6':
-            days.add(6)
-
-        if dia == '7':
-            days.add(7)
-
-    #print (days.dias)
+    for dia in diasString:
+        if dia != ' ':
+            days.add(daySelector.readDia(dia))
 
     schedule = atividade.Atividade(
-        nome, int(horarioInicial), int(horarioFinal), days)
+        nome, int(horarioInicial), int(horarioFinal))
 
-    atividades.add(schedule)
+    for i in days.dias:
+        atividades.add(schedule, i)
 
     while True:
         print("\nDeseja cadastrar outra atividade? S/N")
@@ -64,34 +45,58 @@ while True:
         break
 
 
-#print(atividades.atividades)
-#print("-------------------------------------")
-sortedAtividades = sorted(
-    atividades.atividades, key=lambda x: x.horarioInicial)
-#print(sortedAtividades)
+# print(atividades.atividades)
+# print("-------------------------------------")
+sortedAtividades = []
+for i in atividades.atividades:
+    sortedAtividades.append(
+        sorted(atividades.atividades[i], key=lambda x: x.horarioInicial))
+# print(sortedAtividades)
 
-
-funcionarios = PriorityQueue()
-qtd_funcionarios = 0
-
-for i in sortedAtividades:
-    if not funcionarios.isEmpty():
-        disponivel = funcionarios.delMin()
-        #print (disponivel)
-
-    else:
-        disponivel = None
-
-    if disponivel is not None:
-        if i.horarioInicial >= disponivel[0]:
-            funcionarios.add((i.horarioFinal, (i.horarioFinal, disponivel[1])))
+""" for i in sortedAtividades:
+    count += 1
+    print(daySelector.selectDia(count))
+    for j in i:
+        print(j) """
+count = 0
+for j in sortedAtividades:
+    funcionarios = PriorityQueue()
+    qtd_funcionarios = 0
+    atividadesDia = {}
+    count += 1
+    for i in j:
+        if not funcionarios.isEmpty():
+            disponivel = funcionarios.delMin()
+            #print (disponivel)
 
         else:
-            qtd_funcionarios = qtd_funcionarios + 1
-            funcionarios.add((i.horarioFinal, (i.horarioFinal, qtd_funcionarios)))
+            disponivel = None
 
-    else:
-            qtd_funcionarios = qtd_funcionarios + 1
-            funcionarios.add((i.horarioFinal, (i.horarioFinal, qtd_funcionarios)))
+        if disponivel is not None:
+            if i.horarioInicial >= disponivel[0]:
+                funcionarios.add(
+                    (i.horarioFinal, (i.horarioFinal, disponivel[1])))
+                atividadesDia[disponivel[1]].append(i)
 
-print (qtd_funcionarios)
+            else:
+
+                funcionarios.add((disponivel[0], disponivel))
+                qtd_funcionarios += 1
+                atividadesDia[qtd_funcionarios] = []
+                funcionarios.add(
+                    (i.horarioFinal, (i.horarioFinal, qtd_funcionarios)))
+                atividadesDia[qtd_funcionarios].append(i)
+
+        else:
+            qtd_funcionarios += 1
+            atividadesDia[qtd_funcionarios] = []
+            funcionarios.add(
+                (i.horarioFinal, (i.horarioFinal, qtd_funcionarios)))
+            atividadesDia[qtd_funcionarios].append(i)
+    print(daySelector.selectDia(count))
+    print("Minímo de funcionários: " + str(qtd_funcionarios))
+    for i in atividadesDia:
+        print("funcionario " + str(i) + "  Atividades:")
+        for j in atividadesDia[i]:
+            print(j)
+    print('------------------------------------------------------------------------------------------------------------------')

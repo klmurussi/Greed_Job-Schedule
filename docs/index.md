@@ -2,7 +2,7 @@
 
 ## O que é o nosso projeto?
 
-O nosso projeto é um organizador de tarefas para empresa, que identifica o minimo de funcionários necessários para realizar aquelas tarefas.
+O nosso projeto é um organizador de tarefas para empresa, que identifica o minimo de funcionários necessários para realizar suas tarefas. Além disso organiza funcionários de forma eficiente.
 
 ## Membros:
 
@@ -13,5 +13,16 @@ O nosso projeto é um organizador de tarefas para empresa, que identifica o mini
 
 ## Screenshots
 
+### Exemplo de preenchimento a partir do terminal
+
+![Preenchimento Manual no Terminal](images/ex.png)
+
+### Resultado do exemplo de preenchimento a partir do terminal
+
+![Resultado preenchimento manual](images/resultEx.png)
+
+### Preenchimento a partir do .txt, utilizando o exemplo `test1.txt`
+
+![Exemplo utilizando o .txt](images/test2.png)
 
 ## Vídeo da dupla

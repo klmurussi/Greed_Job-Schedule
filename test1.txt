@@ -1,0 +1,30 @@
+Dailies
+10 
+11 
+2 3 4 5 6
+S
+Programar front-end
+4 
+8 
+2 3 5 
+S
+Gerenciar banco de dados
+5 
+10 
+3 4 5
+S
+Cuidar do deploy
+14 
+16 
+2 5 6 4
+S
+Criação da UI/UX
+14 
+16 
+2 4 6
+S
+Gerenciar outros funcionários
+14
+16
+3 5 6
+N
