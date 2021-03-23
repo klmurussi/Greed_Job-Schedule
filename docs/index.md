@@ -26,3 +26,6 @@ O nosso projeto é um organizador de tarefas para empresa, que identifica o mini
 ![Exemplo utilizando o .txt](images/test2.png)
 
 ## Vídeo da dupla
+
+
+[![Video sobre o projeto](https://img.youtube.com/vi/w0-7ORw6Q8g/0.jpg)](https://youtu.be/w0-7ORw6Q8g)
